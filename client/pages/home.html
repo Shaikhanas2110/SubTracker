@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubTracker - Subscription Management Made Simple</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-credit-card"></i>
+                <span>SubTracker</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Contact</a>
+                <a href="auth.html" class="nav-link-btn">Sign In</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#" class="mobile-link">About</a>
+            <a href="#" class="mobile-link">Contact</a>
+            <a href="auth.html" class="mobile-link-btn">Sign In</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Manage Your Subscriptions
+                    <span class="hero-highlight">Effortlessly</span>
+                </h1>
+                <p class="hero-description">
+                    Take control of your recurring payments with SubTracker. 
+                    Track, manage, and optimize all your subscriptions in one beautiful dashboard.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="auth.html" class="btn-primary">
+                        Get Started Free
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="dashboard.html" class="btn-secondary">
+                        View Demo
+                        <i class="fas fa-play"></i>
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">$2M+</div>
+                        <div class="stat-label">Saved Monthly</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Supported Services</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <div class="preview-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="preview-title">SubTracker Dashboard</div>
+                    </div>
+                    
+                    <div class="preview-content">
+                        <div class="preview-stats">
+                            <div class="preview-stat">
+                                <div class="stat-icon blue">
+                                    <i class="fas fa-list"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-name">Active</div>
+                                </div>
+                            </div>
+                            <div class="preview-stat">
+                                <div class="stat-icon purple">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-value">3</div>
+                                    <div class="stat-name">Due Soon</div>
+                                </div>
+                            </div>
+                            <div class="preview-stat">
+                                <div class="stat-icon green">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-value">$247</div>
+                                    <div class="stat-name">Monthly</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-subscriptions">
+                            <div class="subscription-item">
+                                <div class="sub-icon netflix">N</div>
+                                <div class="sub-info">
+                                    <div class="sub-name">Netflix</div>
+                                    <div class="sub-date">Due in 3 days</div>
+                                </div>
+                                <div class="sub-amount">$15.99</div>
+                            </div>
+                            <div class="subscription-item">
+                                <div class="sub-icon spotify">S</div>
+                                <div class="sub-info">
+                                    <div class="sub-name">Spotify</div>
+                                    <div class="sub-date">Due in 5 days</div>
+                                </div>
+                                <div class="sub-amount">$9.99</div>
+                            </div>
+                            <div class="subscription-item">
+                                <div class="sub-icon adobe">A</div>
+                                <div class="sub-info">
+                                    <div class="sub-name">Adobe CC</div>
+                                    <div class="sub-date">Due in 12 days</div>
+                                </div>
+                                <div class="sub-amount">$52.99</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Elements -->
+                <div class="floating-card card-1">
+                    <i class="fas fa-bell"></i>
+                    <span>Payment reminder</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Monthly savings</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure & private</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-logo">
+                    <i class="fas fa-credit-card"></i>
+                    <span>SubTracker</span>
+                </div>
+                <p class="brand-description">
+                    The simplest way to manage your subscriptions and take control of your recurring payments.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="upcoming-payments.html">Payments</a>
+                    <a href="#">Analytics</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">Status</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-container">
+                <p>&copy; 2024 SubTracker. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/home.js"></script>
+</body>
+</html>
