@@ -33,7 +33,7 @@ app.use(limiter);
 // CORS configuration
 app.use(
   cors({
-    origin: ["http://127.0.0.1:5500", "http://localhost:5500"],
+    origin: ["http://127.0.0.1:5500", "http://localhost:5500" , "http://192.168.20.81:5500"],
     credentials: true,
   })
 );
@@ -71,6 +71,6 @@ startScheduler();
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });

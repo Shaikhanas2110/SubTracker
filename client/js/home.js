@@ -203,14 +203,4 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.transition = "opacity 0.5s ease";
     document.body.style.opacity = "1";
   }, 100);
-
-  // Preload critical images
-  const criticalImages = [
-    // Add any critical images here if needed
-  ];
-
-  criticalImages.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
 });
