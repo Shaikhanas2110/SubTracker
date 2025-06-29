@@ -24,7 +24,7 @@
    \`\`\`bash
    cd subtracker
    npx serve .
-   # Open http://localhost:3000
+   # Open http://localhost:5000
    \`\`\`
 
 3. **Using PHP (if installed)**:
