@@ -50,7 +50,7 @@ async function loadPayments() {
     }
 
     const response = await fetch(
-      "http://localhost:5000/api/payments/upcoming",
+      "https://subtracker-backend.onrender.com/api/payments/upcoming",
       {
         headers: {
           Authorization: `Bearer ${token}`,
