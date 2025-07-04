@@ -50,7 +50,7 @@ async function loadPayments() {
     }
 
     const response = await fetch(
-      "http://192.168.20.81:5000/api/payments/upcoming",
+      "http://localhost:5000/api/payments/upcoming",
       {
         headers: {
           Authorization: `Bearer ${token}`,

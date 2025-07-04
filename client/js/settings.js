@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = "http://192.168.20.81:5000/api";
+const API_BASE_URL = "http://localhost:5000/api";
 
 // Settings Manager Class
 class SettingsManager {
