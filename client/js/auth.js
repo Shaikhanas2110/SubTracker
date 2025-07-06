@@ -119,7 +119,7 @@ class AuthManager {
   }
 
   redirectToDashboard() {
-    window.location.href = "dashboard.html";
+    window.location.href = "subscriptions.html";
   }
 }
 
