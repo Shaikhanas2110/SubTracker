@@ -365,4 +365,5 @@ For support, email support@subtracker.com or create an issue in the GitHub repos
 
 *Last updated: December 2024*
 #   S u b T r a c k e r  
+ #   S u b s c r i p t i o n T r a c k e r  
  
