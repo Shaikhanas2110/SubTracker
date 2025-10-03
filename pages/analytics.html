@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subscription Reports - Analytics Dashboard</title>
+    <link rel="stylesheet" href="../css/reports.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Added html2pdf library for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <div class="logo">
+          <i class="fas fa-credit-card"></i>
+          <span>SubTracker</span>
+        </div>
+
+        <div class="nav-links">
+          <!-- <a href="dashboard.html" class="nav-link ">
+            <i class="fas fa-home"></i>
+            Dashboard
+          </a> -->
+          <a href="subscriptions.html" class="nav-link active">
+            <i class="fas fa-list"></i>
+            Subscriptions
+          </a>
+          <a href="up.html" class="nav-link">
+            <i class="fas fa-calendar-alt"></i>
+            Payments
+          </a>
+          <a href="analytics.html" class="nav-link">
+            <i class="fas fa-file"></i>
+            Reports
+          </a>
+          <a href="settings.html" class="nav-link">
+            <i class="fas fa-cog"></i>
+            Settings
+          </a>
+        </div>
+
+        <div class="user-info">
+          <div class="user-avatar" id="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <main class="container">
+      <div class="header1">
+        <div class="header-right">
+          <!-- Added PDF download button -->
+          <button class="download-btn" id="downloadPdfBtn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M14 11v3H2v-3H0v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM13 7l-1.41-1.41L9 8.17V0H7v8.17L4.41 5.59 3 7l5 5 5-5z"
+                fill="currentColor"
+              />
+            </svg>
+            Download PDF
+          </button>
+          <select id="environmentFilter" class="filter-select">
+            <option value="all">All Subscriptions</option>
+            <option value="active">Active</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="expired">Expired</option>
+          </select>
+          <select id="timeRangeFilter" class="filter-select">
+            <option value="7">Last 7 days</option>
+            <option value="30">Last 30 days</option>
+            <option value="90">Last 90 days</option>
+            <option value="365">Last year</option>
+            <option value="all">All time</option>
+          </select>
+          <button class="icon-button" id="refreshBtn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M13.65 2.35C12.2 0.9 10.21 0 8 0 3.58 0 0.01 3.58 0.01 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L9 7h7V0l-2.35 2.35z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <button class="icon-button">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
+                fill="currentColor"
+              />
+              <circle cx="8" cy="8" r="2" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Added report-content wrapper for PDF export -->
+      <div id="reportContent">
+        <!-- Stats Overview -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">Total Subscriptions</span>
+              <span class="stat-badge" id="totalBadge">0</span>
+            </div>
+            <div class="stat-value" id="totalSubs">0</div>
+            <div class="stat-trend positive" id="totalTrend">
+              <span class="trend-arrow">↑</span>
+              <span>0%</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">Monthly Spending</span>
+              <span class="stat-badge accent" id="monthlyBadge">$0</span>
+            </div>
+            <div class="stat-value" id="monthlySpend">$0.00</div>
+            <div class="stat-trend" id="spendTrend">
+              <span class="trend-arrow">→</span>
+              <span>0%</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">Annual Cost</span>
+              <span class="stat-badge warning" id="annualBadge">$0</span>
+            </div>
+            <div class="stat-value" id="annualCost">$0.00</div>
+            <div class="stat-trend negative" id="annualTrend">
+              <span class="trend-arrow">↓</span>
+              <span>0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-grid">
+          <!-- Bar Chart -->
+          <div class="chart-card large">
+            <div class="chart-header">
+              <div>
+                <h2 class="chart-title">Monthly Spending Breakdown</h2>
+                <p class="chart-subtitle">Subscription costs over time</p>
+              </div>
+              <div class="chart-legend">
+                <span class="legend-item">
+                  <span class="legend-dot" style="background: #3b82f6"></span>
+                  Monthly Cost
+                </span>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="barChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Pie Chart -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <div>
+                <h2 class="chart-title">Category Distribution</h2>
+                <p class="chart-subtitle">Spending by category</p>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="pieChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Charts -->
+        <div class="charts-grid">
+          <!-- Top Subscriptions -->
+          <div class="chart-card large">
+            <div class="chart-header">
+              <div>
+                <h2 class="chart-title">Top 5 Subscriptions</h2>
+                <p class="chart-subtitle">Highest monthly costs</p>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="topSubsChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="table-card">
+          <div class="table-header">
+            <h2 class="chart-title">Subscription Details</h2>
+            <div class="table-filters">
+              <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Search subscriptions..."
+              />
+              <select id="categoryFilter" class="filter-select small">
+                <option value="all">All Categories</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Service Name</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Billing Cycle</th>
+                  <th>Cost</th>
+                  <th>Next Payment</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                <tr>
+                  <td colspan="6" class="loading-cell">Loading data...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Fixed script path to use absolute path -->
+    <script src="../js/reports.js"></script>
+  </body>
+</html>

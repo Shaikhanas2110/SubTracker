@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SubTracker - Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <div class="logo">
+          <i class="fas fa-credit-card"></i>
+          <span>SubTracker</span>
+        </div>
+
+        <div class="nav-links">
+          <!-- <a href="dashboard.html" class="nav-link active">
+            <i class="fas fa-home"></i>
+            Dashboard
+          </a> -->
+          <a href="subscriptions.html" class="nav-link">
+            <i class="fas fa-list"></i>
+            Subscriptions
+          </a>
+          <a href="up.html" class="nav-link">
+            <i class="fas fa-calendar-alt"></i>
+            Payments
+          </a>
+          <a href="analytics.html" class="nav-link">
+            <i class="fas fa-file"></i>
+            Reports
+          </a>
+          <a href="settings.html" class="nav-link">
+            <i class="fas fa-cog"></i>
+            Settings
+          </a>
+        </div>
+
+        <div class="user-info">
+          <div class="user-avatar" id="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+      <!-- Success Message -->
+      <div class="success-message">
+        <i class="fas fa-check-circle"></i>
+        <span>Successfully logged in! Welcome to your dashboard.</span>
+      </div>
+
+      <!-- Welcome Section -->
+      <section class="welcome-section">
+        <h1 class="welcome-title">Welcome to SubTracker!</h1>
+      </section>
+
+      <!-- Dashboard Grid -->
+      <div class="dashboard-grid">
+        <!-- Active Subscriptions Card -->
+        <div class="dashboard-card blue-card">
+          <div class="card-header">
+            <div class="card-icon blue-icon">
+              <i class="fas fa-list"></i>
+            </div>
+            <h2 class="card-title">Active Subscriptions</h2>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Manage all your active subscriptions in one place. Track payments,
+              renewal dates, and costs.
+            </p>
+            <ul class="feature-list">
+              <li>
+                <i class="fas fa-check"></i> View all active subscriptions
+              </li>
+              <li><i class="fas fa-check"></i> Track monthly/yearly costs</li>
+              <li><i class="fas fa-check"></i> Set renewal reminders</li>
+              <li>
+                <i class="fas fa-check"></i> Cancel unwanted subscriptions
+              </li>
+            </ul>
+            <button
+              class="cta-button blue-button"
+              onclick="navigateToSubscriptions()"
+            >
+              View Subscriptions
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Upcoming Payments Card -->
+        <div class="dashboard-card purple-card">
+          <div class="card-header">
+            <div class="card-icon purple-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h2 class="card-title">Upcoming Payments</h2>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Never miss a payment again. Get notified about upcoming
+              subscription renewals.
+            </p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i> Payment calendar view</li>
+              <li><i class="fas fa-check"></i> Email notifications</li>
+              <li><i class="fas fa-check"></i> Payment amount tracking</li>
+              <li><i class="fas fa-check"></i> Budget planning tools</li>
+            </ul>
+            <button
+              class="cta-button purple-button"
+              onclick="navigateToUpcomingPayments()"
+            >
+              View Calendar
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Settings Card -->
+        <div class="dashboard-card amber-card">
+          <div class="card-header">
+            <div class="card-icon amber-icon">
+              <i class="fas fa-cog"></i>
+            </div>
+            <h2 class="card-title">Settings</h2>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Customize your SubTracker experience with personalized settings
+              and preferences.
+            </p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i> Notification preferences</li>
+              <li><i class="fas fa-check"></i> Currency settings</li>
+              <li><i class="fas fa-check"></i> Account security</li>
+              <li><i class="fas fa-check"></i> Data export/import</li>
+            </ul>
+            <button
+              class="cta-button amber-button"
+              onclick="navigateToSettings()"
+            >
+              Open Settings
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../js/dashboard.js"></script>
+  </body>
+</html>

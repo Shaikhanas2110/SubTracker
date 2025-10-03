@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SubTracker - Upcoming Payments</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/up.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <div class="logo">
+          <i class="fas fa-credit-card"></i>
+          <span>SubTracker</span>
+        </div>
+
+        <div class="nav-links">
+          <!-- <a href="dashboard.html" class="nav-link ">
+            <i class="fas fa-home"></i>
+            Dashboard
+          </a> -->
+          <a href="subscriptions.html" class="nav-link">
+            <i class="fas fa-list"></i>
+            Subscriptions
+          </a>
+          <a href="up.html" class="nav-link active">
+            <i class="fas fa-calendar-alt"></i>
+            Payments
+          </a>
+          <a href="analytics.html" class="nav-link">
+            <i class="fas fa-file"></i>
+            Reports
+          </a>
+          <a href="settings.html" class="nav-link">
+            <i class="fas fa-cog"></i>
+            Settings
+          </a>
+        </div>
+
+        <div class="user-info">
+          <div class="user-avatar" id="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+      <!-- Page Header -->
+      <!-- <div class="page-header">
+        <div class="header-content">
+          <h1 class="page-title">
+            <i class="fas fa-calendar-alt"></i>
+            Upcoming Payments
+          </h1>
+          <p class="page-subtitle">
+            Stay on top of your subscription renewals and never miss a payment
+          </p>
+        </div>
+        <div class="header-actions">
+          <button class="filter-btn" onclick="toggleFilters()">
+            <i class="fas fa-filter"></i>
+            Filters
+          </button>
+          <button class="export-btn" onclick="exportPayments()">
+            <i class="fas fa-download"></i>
+            Export
+          </button>
+        </div>
+      </div> -->
+
+      <!-- Filters Panel -->
+      <div class="filters-panel" id="filters-panel">
+        <div class="filter-group">
+          <label for="time-range">Time Range:</label>
+          <select id="time-range" onchange="filterPayments()">
+            <option value="7">Next 7 days</option>
+            <option value="30" selected>Next 30 days</option>
+            <option value="90">Next 3 months</option>
+            <option value="365">Next year</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="amount-filter">Amount:</label>
+          <select id="amount-filter" onchange="filterPayments()">
+            <option value="all">All amounts</option>
+            <option value="low">Under $10</option>
+            <option value="medium">$10 - $50</option>
+            <option value="high">Over $50</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="status-filter">Status:</label>
+          <select id="status-filter" onchange="filterPayments()">
+            <option value="all">All statuses</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="due-soon">Due Soon</option>
+            <option value="overdue">Overdue</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="summary-section">
+        <div class="summary-card">
+          <div class="summary-icon red">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+          <div class="summary-content">
+            <div class="summary-number" id="due-today">0</div>
+            <div class="summary-label">Due Today</div>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon orange">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="summary-content">
+            <div class="summary-number" id="due-week">0</div>
+            <div class="summary-label">Due This Week</div>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon blue">
+            <i class="fas fa-calendar"></i>
+          </div>
+          <div class="summary-content">
+            <div class="summary-number" id="due-month">0</div>
+            <div class="summary-label">Due This Month</div>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon green">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="summary-content">
+            <div class="summary-number" id="total-amount">$0</div>
+            <div class="summary-label">Total Amount</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div class="loading-container" id="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Loading upcoming payments...</p>
+      </div>
+
+      <!-- Error State -->
+      <div class="error-container" id="error-container" style="display: none">
+        <div class="error-icon">
+          <i class="fas fa-exclamation-circle"></i>
+        </div>
+        <h3>Unable to load payments</h3>
+        <p>
+          There was an error connecting to the database. Please try again later.
+        </p>
+        <button class="retry-btn" onclick="loadPayments()">
+          <i class="fas fa-refresh"></i>
+          Retry
+        </button>
+      </div>
+
+      <!-- Payments List -->
+      <div
+        class="payments-container"
+        id="payments-container"
+        style="display: none"
+      >
+        <div class="payments-header">
+          <h2>Upcoming Payments</h2>
+          <div class="view-toggle">
+            <button
+              class="view-btn active"
+              data-view="list"
+              onclick="switchView('list')"
+            >
+              <i class="fas fa-list"></i>
+              List
+            </button>
+            <button
+              class="view-btn"
+              data-view="calendar"
+              onclick="switchView('calendar')"
+            >
+              <i class="fas fa-calendar"></i>
+              Calendar
+            </button>
+          </div>
+        </div>
+
+        <!-- List View -->
+        <div class="payments-list" id="payments-list">
+          <!-- Payments will be dynamically inserted here -->
+        </div>
+
+        <!-- Calendar View -->
+        <div class="calendar-view" id="calendar-view" style="display: none">
+          <div class="calendar-header">
+            <button class="calendar-nav" onclick="previousMonth()">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <h3 id="calendar-month">Loading...</h3>
+            <button class="calendar-nav" onclick="nextMonth()">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <div class="calendar-grid" id="calendar-grid">
+            <!-- Calendar will be dynamically generated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="empty-state" style="display: none">
+        <div class="empty-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <h3>No upcoming payments</h3>
+        <p>
+          You're all caught up! No payments are due in the selected time range.
+        </p>
+        <!-- <button class="add-subscription-btn" onclick="addSubscription()">
+          <i class="fas fa-plus"></i>
+          Add Subscription
+        </button> -->
+      </div>
+    </main>
+
+    <!-- Payment Detail Modal -->
+    <div class="modal-overlay" id="payment-modal" onclick="closeModal()">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <h3 id="modal-title">Payment Details</h3>
+          <button class="modal-close" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <!-- Payment details will be inserted here -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="closeModal()">Close</button>
+          <button class="btn-primary" id="modal-action-btn">
+            Mark as Paid
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/up.js"></script>
+  </body>
+</html>
