@@ -1,6 +1,5 @@
 # SubTracker - Subscription Management System
-
-![SubTracker Logo](https://via.placeholder.com/200x80/3b82f6/ffffff?text=SubTracker)
+(https://via.placeholder.com/200x80/3b82f6/ffffff?text=SubTracker)
 
 ## 📋 Overview
 
