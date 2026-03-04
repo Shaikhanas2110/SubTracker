@@ -1,5 +1,4 @@
-# SubTracker - Subscription Management System
-(https://via.placeholder.com/200x80/3b82f6/ffffff?text=SubTracker)
+# 
 
 ## 📋 Overview
 
