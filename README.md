@@ -1,6 +1,4 @@
-# 
 
-## 📋 Overview
 
 SubTracker is a comprehensive subscription management system designed to help users track, manage, and optimize their recurring payments. Built with modern web technologies, it provides an intuitive dashboard for monitoring active subscriptions, upcoming payments, and account settings.
 
