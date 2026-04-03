@@ -73,7 +73,7 @@ subtracker/
 └── README.md                  # Project documentation
 \`\`\`
 
-## 🔧 Setup Instructions
+## 🔧🔧 Setup Instructions
 
 ### Prerequisites
 - Modern web browser (Chrome, Firefox, Safari, Edge)
