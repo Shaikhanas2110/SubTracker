@@ -14,7 +14,7 @@ function toggleMobileMenu() {
   }
 }
 
-// Close mobile menu when clicking outside
+
 document.addEventListener("click", (e) => {
   const mobileMenu = document.getElementById("mobile-menu");
   const menuBtn = document.querySelector(".mobile-menu-btn");
