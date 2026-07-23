@@ -5,7 +5,7 @@ import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-// @route   GET /api/user/profile
+// @route   
 // @desc    Get user profile
 // @access  Private
 router.get("/profile", auth, async (req, res) => {
