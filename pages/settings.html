@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SubTracker - Settings</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/settings.css" />
+  </head>
+  
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <div class="logo">
+          <i class="fas fa-credit-card"></i>
+          <span>SubTracker</span>
+        </div>
+
+        <div class="nav-links">
+          <!-- <a href="dashboard.html" class="nav-link ">
+            <i class="fas fa-home"></i>
+            Dashboard
+          </a> -->
+          <a href="subscriptions.html" class="nav-link">
+            <i class="fas fa-list"></i>
+            Subscriptions
+          </a>
+          <a href="up.html" class="nav-link">
+            <i class="fas fa-calendar-alt"></i>
+            Payments
+          </a>
+          <a href="analytics.html" class="nav-link">
+            <i class="fas fa-file"></i>
+            Reports
+          </a>
+          <a href="settings.html" class="nav-link active">
+            <i class="fas fa-cog"></i>
+            Settings
+          </a>
+        </div>
+
+        <div class="user-info">
+          <div class="user-avatar" id="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+      <!-- Profile Settings -->
+      <section class="settings-section">
+        <div class="section-header">
+          <h2 class="section-title">Profile Information</h2>
+          <p class="section-description">
+            Update your personal information and account details
+          </p>
+        </div>
+
+        <div class="section-body">
+          <div class="message" id="profile-message"></div>
+
+          <div class="account-info">
+            <div class="info-row">
+              <span class="info-label">Member since</span>
+              <span class="info-value" id="member-since">-</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Last login</span>
+              <span class="info-value" id="last-login">-</span>
+            </div>
+          </div>
+
+          <form id="profile-form">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                class="form-input"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="btn-group">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="update-profile-btn"
+              >
+                <span class="btn-text">Update Profile</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Password Settings -->
+      <section class="settings-section">
+        <div class="section-header">
+          <h2 class="section-title">Change Password</h2>
+          <p class="section-description">
+            Update your password to keep your account secure
+          </p>
+        </div>
+
+        <div class="section-body">
+          <div class="message" id="password-message"></div>
+
+          <form id="password-form">
+            <div class="form-group">
+              <label for="current-password" class="form-label"
+                >Current Password</label
+              >
+              <input
+                type="password"
+                id="current-password"
+                class="form-input"
+                placeholder="Enter your current password"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="new-password" class="form-label">New Password</label>
+              <input
+                type="password"
+                id="new-password"
+                class="form-input"
+                placeholder="Enter your new password"
+                required
+                minlength="6"
+              />
+              <div class="password-strength" id="password-strength">
+                <div class="strength-bar">
+                  <div class="strength-fill"></div>
+                </div>
+                <span class="strength-text">Password strength</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirm-password" class="form-label"
+                >Confirm New Password</label
+              >
+              <input
+                type="password"
+                id="confirm-password"
+                class="form-input"
+                placeholder="Confirm your new password"
+                required
+              />
+            </div>
+
+            <div class="btn-group">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="update-password-btn"
+              >
+                <span class="btn-text">Update Password</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Email Preferences -->
+      <section class="settings-section">
+        <div class="section-header">
+          <h2 class="section-title">Email Preferences</h2>
+          <p class="section-description">
+            Manage your email notifications and reminders
+          </p>
+        </div>
+
+        <div class="section-body">
+          <div class="message" id="preferences-message"></div>
+
+          <div class="toggle-group">
+            <div class="toggle-info">
+              <div class="toggle-title">Payment Reminders</div>
+              <div class="toggle-description">
+                Get notified before your subscriptions renew
+              </div>
+            </div>
+            <div class="toggle-switch" id="email-reminders-toggle">
+              <div class="toggle-slider"></div>
+            </div>
+          </div>
+
+          <div class="form-group" id="reminder-days-group">
+            <label for="reminder-days" class="form-label">Remind me</label>
+            <select id="reminder-days" class="form-select">
+              <option value="1">1 day before</option>
+              <option value="3">3 days before</option>
+              <option value="7">1 week before</option>
+              <option value="14">2 weeks before</option>
+              <option value="30">1 month before</option>
+            </select>
+          </div>
+
+          <div class="toggle-group">
+            <div class="toggle-info">
+              <div class="toggle-title">Weekly Digest</div>
+              <div class="toggle-description">
+                Receive a weekly summary of your subscriptions
+              </div>
+            </div>
+            <div class="toggle-switch" id="weekly-digest-toggle">
+              <div class="toggle-slider"></div>
+            </div>
+          </div>
+
+          <div class="toggle-group">
+            <div class="toggle-info">
+              <div class="toggle-title">Monthly Report</div>
+              <div class="toggle-description">
+                Get a detailed monthly spending report
+              </div>
+            </div>
+            <div class="toggle-switch" id="monthly-report-toggle">
+              <div class="toggle-slider"></div>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="update-preferences-btn"
+              onclick="updatePreferences()"
+            >
+              <span class="btn-text">Save Preferences</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Account Actions -->
+      <section class="settings-section">
+        <div class="section-header">
+          <h2 class="section-title">Account Actions</h2>
+          <p class="section-description">Manage your account and session</p>
+        </div>
+
+        <div class="section-body">
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+              Log Out
+            </button>
+            <!-- <button
+              type="button"
+              class="btn btn-danger"
+              onclick="deactivateAccount()"
+            >
+              <i class="fas fa-user-times"></i>
+              Deactivate Account
+            </button> -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../js/settings.js"></script>
+  </body>
+</html>

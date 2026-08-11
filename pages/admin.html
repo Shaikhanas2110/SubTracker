@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - SubTracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <!-- Simplified navbar matching SubTracker subscriptions page -->
+    <nav class="navbar" id="navbar">
+      <div class="navbar-container">
+        <a href="#" class="navbar-brand">
+          <div class="navbar-logo"><i class="fas fa-credit-card"></i></div>
+          <span class="navbar-title">SubTracker</span>
+        </a>
+
+        <div class="navbar-actions">
+          <button
+            class="navbar-btn navbar-btn-primary"
+            onclick="downloadReport()"
+          >
+            <span class="navbar-icon"></span>
+            <span>Download Report</span>
+          </button>
+          <button
+            class="navbar-btn btn-danger"
+            onclick="logout()"
+          >
+            <span class="navbar-icon"
+              ><i class="fas fa-sign-out-alt"></i>
+            </span>
+            <span>Log Out</span>
+          </button>
+          <!-- <div class="user-avatar" onclick="logout()" title="Admin">AS</div> -->
+        </div>
+      </div>
+    </nav>
+    <!-- </CHANGE> -->
+
+    <div class="container">
+      <div class="page-header">
+        <h2>User Management Dashboard</h2>
+        <p>Manage and monitor all user accounts in one place</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Users</div>
+          <div class="stat-value" id="totalUsers">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Users</div>
+          <div class="stat-value" id="activeUsers">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Admins</div>
+          <div class="stat-value" id="adminCount">0</div>
+        </div>
+      </div>
+
+      <div class="users-grid" id="usersBody">
+        <div class="loading-card">
+          <div class="loading-bar"></div>
+          <div class="loading-bar short"></div>
+          <div class="loading-bar"></div>
+        </div>
+        <div class="loading-card">
+          <div class="loading-bar"></div>
+          <div class="loading-bar short"></div>
+          <div class="loading-bar"></div>
+        </div>
+        <div class="loading-card">
+          <div class="loading-bar"></div>
+          <div class="loading-bar short"></div>
+          <div class="loading-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+  </body>
+</html>

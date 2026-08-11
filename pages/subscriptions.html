@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SubTracker - Active Subscriptions</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/sub.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <div class="logo">
+          <i class="fas fa-credit-card"></i>
+          <span>SubTracker</span>
+        </div>
+
+        <div class="nav-links">
+          <!-- <a href="dashboard.html" class="nav-link ">
+            <i class="fas fa-home"></i>
+            Dashboard
+          </a> -->
+          <a href="subscriptions.html" class="nav-link active">
+            <i class="fas fa-list"></i>
+            Subscriptions
+          </a>
+          <a href="up.html" class="nav-link">
+            <i class="fas fa-calendar-alt"></i>
+            Payments
+          </a>
+          <a href="analytics.html" class="nav-link">
+            <i class="fas fa-file"></i>
+            Reports
+          </a>
+          <a href="settings.html" class="nav-link">
+            <i class="fas fa-cog"></i>
+            Settings
+          </a>
+        </div>
+
+        <div class="user-info">
+          <div class="user-avatar" id="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+      <!-- Error Message -->
+      <div class="error-message" id="error-message"></div>
+
+      <!-- Stats Overview -->
+      <section class="stats-overview">
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <i class="fas fa-list"></i>
+          </div>
+          <div class="stat-value" id="total-subscriptions">0</div>
+          <div class="stat-label">Total Subscriptions</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="stat-value" id="monthly-cost">$0.00</div>
+          <div class="stat-label">Monthly Cost</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="stat-value" id="next-payment">-</div>
+          <div class="stat-label">Next Payment</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="stat-value" id="yearly-cost">$0.00</div>
+          <div class="stat-label">Yearly Cost</div>
+        </div>
+      </section>
+
+      <!-- Controls -->
+      <section class="controls-section">
+        <div class="controls-header">
+          <div class="controls-left">
+            <div class="search-box">
+              <i class="fas fa-search search-icon"></i>
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Search subscriptions..."
+                id="search-input"
+              />
+            </div>
+
+            <select class="filter-select" id="category-filter">
+              <option value="">All Categories</option>
+              <option value="streaming">Streaming</option>
+              <option value="productivity">Productivity</option>
+              <option value="design">Design</option>
+              <option value="development">Development</option>
+              <option value="fitness">Fitness</option>
+              <option value="music">Music</option>
+              <option value="news">News</option>
+              <option value="other">Other</option>
+            </select>
+
+            <select class="filter-select" id="sort-filter">
+              <option value="name">Sort by Name</option>
+              <option value="cost-high">Cost (High to Low)</option>
+              <option value="cost-low">Cost (Low to High)</option>
+              <option value="next-payment">Next Payment</option>
+              <option value="newest">Newest First</option>
+            </select>
+          </div>
+
+          <select class="filter-select" id="recurring-filter">
+            <option value="">All</option>
+            <option value="true">Recurring</option>
+            <option value="false">Non-Recurring</option>
+            <option value="past">Past Subscriptions</option>
+          </select>
+
+          <button
+            class="add-subscription-btn"
+            onclick="openAddModal()"
+            id="add-btn"
+          >
+            <i class="fas fa-plus"></i>
+            Add Subscription
+          </button>
+        </div>
+      </section>
+
+      <!-- Loading State -->
+      <section class="loading-state hidden" id="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Loading subscriptions...</p>
+      </section>
+
+      <!-- Subscriptions Grid -->
+      <section class="subscriptions-grid" id="subscriptions-grid">
+        <!-- Subscription cards will be dynamically generated here -->
+      </section>
+
+      <!-- Empty State -->
+      <section class="empty-state hidden" id="empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-credit-card"></i>
+        </div>
+        <h2 class="empty-title">No Subscriptions Yet</h2>
+        <p class="empty-description">
+          Start tracking your subscriptions by adding your first one. Never miss
+          a payment or renewal date again!
+        </p>
+        <button class="add-subscription-btn" onclick="openAddModal()">
+          <i class="fas fa-plus"></i>
+          Add Your First Subscription
+        </button>
+      </section>
+    </main>
+
+    <!-- Add/Edit Subscription Modal -->
+    <div class="modal-overlay" id="subscription-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-title">Add Subscription</h2>
+          <button class="close-btn" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <form id="subscription-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="service-name" class="form-label">Service Name</label>
+              <input
+                type="text"
+                id="service-name"
+                class="form-input"
+                placeholder="e.g., Netflix, Spotify, Adobe Creative Cloud"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cost" class="form-label">Cost</label>
+                <input
+                  type="number"
+                  id="cost"
+                  class="form-input"
+                  placeholder="0.00"
+                  step="0.01"
+                  min="0"
+                  max="10000"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="billing-cycle" class="form-label"
+                  >Billing Cycle</label
+                >
+                <select id="billing-cycle" class="form-select" required>
+                  <option value="">Select cycle</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="quarterly">Quarterly</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="category" class="form-label">Category</label>
+                <select id="category" class="form-select" required>
+                  <option value="">Select category</option>
+                  <option value="streaming">Streaming</option>
+                  <option value="productivity">Productivity</option>
+                  <option value="design">Design</option>
+                  <option value="development">Development</option>
+                  <option value="fitness">Fitness</option>
+                  <option value="music">Music</option>
+                  <option value="news">News</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="is-recurring" class="form-label"
+                    >Recurring?</label
+                  >
+                  <select id="is-recurring" class="form-select" required>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="next-payment-date" class="form-label"
+                  >Next Payment Date</label
+                >
+                <input
+                  type="date"
+                  id="next-payment-date"
+                  class="form-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form-label"
+                >Description (Optional)</label
+              >
+              <input
+                type="text"
+                id="description"
+                class="form-input"
+                placeholder="Brief description or plan details"
+                maxlength="500"
+              />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal()"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" id="submit-btn">
+              <span class="btn-text">Add Subscription</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../js/subscriptions.js"></script>
+  </body>
+</html>
